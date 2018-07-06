@@ -1,0 +1,47 @@
+<div class="columns container">
+  <form class="is-three-fifths" [formGroup]="myForm" (ngSubmit)="submitForm(myForm.value)">
+    <div class="field">
+      <label for="username" class="label">Username</label>
+      <div class="control">
+        <input type="text" class="input" placeholder="username" id="username" [formControl]="myForm.controls['username']">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input is-danger" type="email" placeholder="Email input" value="hello@" [formControl]="myForm.controls['email']">
+      </div>
+      <p class="help is-danger" *ngIf="false">This email is invalid</p>
+    </div>
+    <div class="field">
+      <label class="label">Type</label>
+      <div class="control">
+        <div class="select">
+          <select [formControl]="myForm.controls['type']">
+            <option value="short">short description (less than 100 words)</option>
+            <option value="long">long description (over 500 words)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Message</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="Textarea" [formControl]="myForm.controls['message']"></textarea>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" [formControl]="myForm.controls['terms_check_box']" id="terms_check_box">
+          I agree to the <a href="#">terms and conditions</a>
+        </label>
+      </div>
+    </div>
+    <div class="field ">
+      <div class="control">
+        <button class="button is-primary" type="submit" [disabled]="!myForm.valid">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
