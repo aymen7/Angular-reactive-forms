@@ -30,8 +30,8 @@
       <label class="label">Type</label>
       <div class="control">
         <div class="select">
-          <select [formControl]="myForm.controls['type']">
-            <option value="short">short description (less than 100 words)</option>
+          <select [formControl]="myForm.controls['type']" >
+            <option value="short" >short description (less than 100 words)</option>
             <option value="long">long description (over 500 words)</option>
           </select>
         </div>
@@ -41,11 +41,16 @@
       <label class="label">Message</label>
       <div class="control">
         <textarea class="textarea" placeholder="Textarea" [formControl]="myForm.controls['message']"></textarea>
+        <p class="help is-danger"
+           *ngIf="myForm.controls['message'].touched && myForm.controls['message'].hasError('invalidMessage')
+           && !myForm.controls['message'].hasError('required')">This message doesn't respect the length specifications</p>
       </div>
+      <span class="tag is-light" id="msg_length">{{messageLength}}</span>
     </div>
     <div class="field">
       <div class="control">
         <label class="checkbox">
+          <!-- when submitting the form and if the 'terms_check_box' is checked we will have terms_check_box=checked-->
           <input type="checkbox" [formControl]="myForm.controls['terms_check_box']" id="terms_check_box">
           I agree to the <a href="#">terms and conditions</a>
         </label>
@@ -53,7 +58,8 @@
     </div>
     <div class="field ">
       <div class="control">
-        <button class="button is-primary" type="submit" [disabled]="!myForm.valid">Submit</button>
+        <button class="button is-primary" type="submit" [disabled]="!myForm.valid || (!myForm.valid && myForm.touched)
+        || (!myForm.valid && myForm.dirty)">Submit</button>
       </div>
     </div>
   </form>
