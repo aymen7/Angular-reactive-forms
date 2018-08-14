@@ -19,7 +19,8 @@ export class FormComponent implements OnInit {
       'email': ['', Validators.compose([Validators.required, Validators.min(3)])],
       'message': ['', Validators.compose([Validators.required])],
       'type': ['', Validators.compose([Validators.required])],
-      'terms_check_box': ['', Validators.compose([Validators.required])]
+      /* use the validator.pattern to check if the checkbox is checked (in case of toggler)*/
+      'terms_check_box': [false, Validators.compose([Validators.required, Validators.pattern('true')])]
     });
     this.messageLength = 0;
   }
@@ -39,21 +40,6 @@ export class FormComponent implements OnInit {
       (message) => {
         this.messageLength = message.toString().length;
       }
-    );
-  }
-  checkBoxChange() {
-    // on terms_check_box valueChange we gonna disable and enable the submit btn accordingly
-    this.myForm.get('terms_check_box').valueChanges.subscribe(
-      /*(terms_check_box) => {
-        if (terms_check_box === '1') {
-          // this.myForm.get('submit_btn').enable();
-          this.myForm.controls['submit_btn'].enable();
-        }// end of if
-        else {
-          // this.myForm.get('submit_btn').disable();
-          this.myForm.controls['submit_btn'].disabled();
-        }// end of else
-      }*/
     );
   }
   getMessageType() {
@@ -82,6 +68,7 @@ export class FormComponent implements OnInit {
     // this.checkBoxChange();
     // calling getMessageType()
     this.getMessageType();
+    
   }
 }// end of the component
 function usernameValidator(control: FormControl): { [s: string]: boolean} {
