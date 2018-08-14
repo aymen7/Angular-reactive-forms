@@ -60,18 +60,20 @@ export class FormComponent implements OnInit {
     /* validate the message based on:
    * 1.must be longer or equal to 100 character if the type chosen is 'long'
    * 2.must be less than 100 character if the type chosen is 'short'*/
-    this.myForm.get('type').valueChanges.subscribe(
-      (type) => {
-        if (type === 'short') {
-          this.myForm.get('message').setValidators([Validators.required, shortMessageValidator]);
-          console.log(this.myForm.get('message').value.toString().length + ' short');
-        }// end of if
-        if (type === 'long') {
-          this.myForm.get('message').setValidators([Validators.required, longMessageValidator]);
-          console.log(this.myForm.get('message').value.toString().length + ' long');
-        }// end if
-      }// fat arrow
-    );
+  //#region triggers when the type changes
+  this.myForm.get('type').valueChanges.subscribe(
+    (type) => {
+      if (type === 'short') {
+        this.myForm.get('message').setValidators([Validators.required, shortMessageValidator]);
+        console.log(this.myForm.get('message').value.toString().length + ' short');
+      }// end of if
+      if (type === 'long') {
+        this.myForm.get('message').setValidators([Validators.required, longMessageValidator]);
+        console.log(this.myForm.get('message').value.toString().length + ' long');
+      }// end if
+    }// fat arrow
+  );
+  //#endregion for when the type change
   }
   ngOnInit() {
     // calling the getMsgLength()
@@ -94,26 +96,19 @@ if (!control.value.match(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i) ) {
 }
 }
 function shortMessageValidator(control: FormControl): { [s: string]: boolean} {
-  /* validate the message based on:
-  * 2.must be less than 100 character if the type chosen is 'short'*/
+  // validate the message based on:
+  // 2.must be less than 100 character if the type chosen is 'short'
   if (control.value.toString().length > 100 ) {
-    this.myForm.get('message').updateValueAndValidity();
-    this.myForm.get('type').updateValueAndValidity();
-    this.myForm.updateValueAndValidity();
     console.log('short msg validator activate');
     return {invalidMessage: true};
   }
 
 }
 function longMessageValidator(control: FormControl): { [s: string]: boolean} {
-  /* validate the message based on:
-  * 1.must be longer or equal to 100 character if the type chosen is 'long' */
+  // validate the message based on:
+  // 1.must be longer or equal to 100 character if the type chosen is 'long'
   if (control.value.toString().length < 100 ) {
-    this.myForm.get('message').updateValueAndValidity();
-    this.myForm.get('type').updateValueAndValidity();
-    this.myForm.updateValueAndValidity();
     console.log('long msg validator activate');
     return {invalidMessage: true};
   }
 }
-

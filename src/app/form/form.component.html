@@ -42,8 +42,9 @@
       <div class="control">
         <textarea class="textarea" placeholder="Textarea" [formControl]="myForm.controls['message']"></textarea>
         <p class="help is-danger"
-           *ngIf="myForm.controls['message'].touched && myForm.controls['message'].hasError('invalidMessage')
-           && !myForm.controls['message'].hasError('required')">This message doesn't respect the length specifications</p>
+           *ngIf="(myForm.controls['message'].touched && myForm.controls['message'].hasError('invalidMessage')) 
+           || (myForm.controls['message'].dirty && myForm.controls['message'].hasError('invalidMessage'))">
+           This message doesn't respect the length specifications</p>   
       </div>
       <span class="tag is-light" id="msg_length">{{messageLength}}</span>
     </div>
