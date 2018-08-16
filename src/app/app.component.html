@@ -1,1 +1,2 @@
-<app-form></app-form>
+<app-form (onformSubmit)='formWasSubmited($event)'></app-form>
+<app-posts-list [p_list]='posts_list'></app-posts-list>
