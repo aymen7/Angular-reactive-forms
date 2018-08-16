@@ -5,3 +5,6 @@
 #msg_length{
   margin: 5px 0 0 300px;
 }
+label{
+  color: rgba(255, 255, 255, 0.9);
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Post} from './post.model';
 @Component({
@@ -7,11 +7,16 @@ import { Post} from './post.model';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+  // the send to app component output
+  @Output() onformSubmit: EventEmitter<Post[]>;
   /*we will use myForm as our FormGroup*/
   myForm: FormGroup;
   /*post instance to store our user's input data */
   post: Post;
+  // message length
   messageLength: number;
+  // collection of posts
+  posts: Post[];
   /*inject fb instance as our FormBuilder*/
   constructor(_fb: FormBuilder) {
     this.myForm = _fb.group({
@@ -23,16 +28,20 @@ export class FormComponent implements OnInit {
       'terms_check_box': [false, Validators.compose([Validators.required, Validators.pattern('true')])]
     });
     this.messageLength = 0;
+    this.posts = [];
+    this.onformSubmit = new EventEmitter<Post[]>();
   }
   submitForm(form: any) {
-    /* initialisation of the new post object with the user's input*/
+    // store the form state in a variable
+    const validFrom: boolean = this.myForm.valid;
+    if (validFrom) {
+      /* initialisation of the new post object with the user's input*/
     this.post = new Post(form.username, form.email, form.message, form.type);
-    /*just for debugging */
-    console.log('form value: ' + this.post.username);
-    console.log('form value: ' + this.post.email);
-    console.log('form value: ' + this.post.message);
-    console.log('form value: ' + this.post.type);
-    console.log('form value: ' + form.terms_check_box);
+    // push the submitted post into the end of the posts collection
+    this.posts.push(this.post);
+    // emit the list of posts when submitted
+    this.onformSubmit.emit(this.posts);
+    } // end of if
   }
   getMsgLength() {
     /* get the value of the message length on value changes */
@@ -68,7 +77,6 @@ export class FormComponent implements OnInit {
     // this.checkBoxChange();
     // calling getMessageType()
     this.getMessageType();
-    
   }
 }// end of the component
 function usernameValidator(control: FormControl): { [s: string]: boolean} {

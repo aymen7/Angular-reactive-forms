@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr class="is-selected">
+        <th>username</th>
+        <th>email</th>
+        <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of p_list">
+      <td>{{post.username}}</td>
+      <td>{{post.email}}</td>
+      <td>{{post.message}}</td>
+    </tr>
+  </tbody>
+</table>
