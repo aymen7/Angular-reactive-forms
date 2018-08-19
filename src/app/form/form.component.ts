@@ -27,6 +27,7 @@ export class FormComponent implements OnInit {
       /* use the validator.pattern to check if the checkbox is checked (in case of toggler)*/
       'terms_check_box': [false, Validators.compose([Validators.required, Validators.pattern('true')])]
     });
+
     this.messageLength = 0;
     this.posts = [];
     this.onformSubmit = new EventEmitter<Post[]>();

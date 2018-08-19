@@ -1,10 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
 .container{
   margin: 50px 0 0 20px;
   padding-left: 32%;
+  font-family: 'Share Tech Mono', monospace;
 }
 #msg_length{
-  margin: 5px 0 0 300px;
+  margin: 5px 0 0 325px;
 }
+
 label{
   color: rgba(255, 255, 255, 0.9);
+}
+.help.is-danger {
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 1%;
+}
+#message-danger{
+  font-size: 12px !important;
+  padding: 0%;
+}
+button{
+  margin: 10px 0 0 127px;
 }

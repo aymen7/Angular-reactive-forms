@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 html{
     color: white !important;
-    background-color: black !important;
     }
+/* demo styles */
+html{
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  font-family: 'Roboto', sans-serif;
+}    

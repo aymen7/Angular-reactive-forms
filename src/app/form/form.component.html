@@ -41,25 +41,25 @@
       <label class="label">Message</label>
       <div class="control">
         <textarea class="textarea" placeholder="Textarea" [formControl]="myForm.controls['message']"></textarea>
-        <p class="help is-danger"
+        <p class="help is-danger" id="message-danger"
            *ngIf="(myForm.controls['message'].touched && myForm.controls['message'].hasError('invalidMessage')) 
            || (myForm.controls['message'].dirty && myForm.controls['message'].hasError('invalidMessage'))">
            This message doesn't respect the length specifications</p>   
       </div>
-      <span class="tag is-light" id="msg_length">{{messageLength}}</span>
+      <span class="tag is-light" id="msg_length" >{{messageLength}}</span>
     </div>
     <div class="field">
       <div class="control">
         <label class="checkbox">
           <!-- when submitting the form and if the 'terms_check_box' is checked we will have terms_check_box=checked-->
           <input type="checkbox" [formControl]="myForm.controls['terms_check_box']" id="terms_check_box">
-          I agree to the <a href="#">terms and conditions</a>
+          I agree to the terms and conditions
         </label>
       </div>
     </div>
     <div class="field ">
       <div class="control">
-        <button class="button is-primary" type="submit" [disabled]="!myForm.valid || (!myForm.valid && myForm.touched)
+        <button class="button is-white" type="submit" [disabled]="!myForm.valid || (!myForm.valid && myForm.touched)
         || (!myForm.valid && myForm.dirty)">Submit</button>
       </div>
     </div>
