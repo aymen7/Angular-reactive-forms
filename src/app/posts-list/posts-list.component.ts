@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Post } from '../form/post.model';
 
 @Component({
@@ -8,12 +8,15 @@ import { Post } from '../form/post.model';
 })
 export class PostsListComponent implements OnInit {
   @Input() p_list: Post[];
-  list: number[];
+  @Output() onClickBackBtn: EventEmitter<boolean>;
   constructor() {
-    this.list = [1, 2 , 3];
+    this.onClickBackBtn = new EventEmitter<boolean>();
   }
 
   ngOnInit() {
+  }
+  btnClicked() {
+    this.onClickBackBtn.emit(true);
   }
 
 }
