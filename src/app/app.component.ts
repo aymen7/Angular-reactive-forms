@@ -6,20 +6,17 @@ import { Post } from './form/post.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  posts_list: Post[];
+  post: Post;
   // toogle the form/posts visibility
   show_form: boolean;
   constructor() {
-    this.posts_list = [];
+    this.post = new Post('', '', '', '');
     this.show_form = true;
   }
-  formWasSubmited(Posts: Post[]) {
+  formWasSubmited(post: Post) {
     console.clear();
     console.log('posts recieved in app.component');
-    this.posts_list = Posts;
-    for (let post of this.posts_list) {
-      console.log('post username: ' + post.username);
-    }
+    this.post = post;
     // toogle the visibility of the form
     this.show_form = !this.show_form;
   }

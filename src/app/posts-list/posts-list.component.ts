@@ -7,7 +7,7 @@ import { Post } from '../form/post.model';
   styleUrls: ['./posts-list.component.css']
 })
 export class PostsListComponent implements OnInit {
-  @Input() p_list: Post[];
+  @Input() p: Post;
   @Output() onClickBackBtn: EventEmitter<boolean>;
   constructor() {
     this.onClickBackBtn = new EventEmitter<boolean>();

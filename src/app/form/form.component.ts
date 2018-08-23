@@ -8,15 +8,13 @@ import { Post} from './post.model';
 })
 export class FormComponent implements OnInit {
   // the send to app component output
-  @Output() onformSubmit: EventEmitter<Post[]>;
+  @Output() onformSubmit: EventEmitter<Post>;
   /*we will use myForm as our FormGroup*/
   myForm: FormGroup;
   /*post instance to store our user's input data */
   post: Post;
   // message length
   messageLength: number;
-  // collection of posts
-  posts: Post[];
   /*inject fb instance as our FormBuilder*/
   constructor(_fb: FormBuilder) {
     this.myForm = _fb.group({
@@ -29,8 +27,7 @@ export class FormComponent implements OnInit {
     });
 
     this.messageLength = 0;
-    this.posts = [];
-    this.onformSubmit = new EventEmitter<Post[]>();
+    this.onformSubmit = new EventEmitter<Post>();
   }
   submitForm(form: any) {
     // store the form state in a variable
@@ -38,10 +35,8 @@ export class FormComponent implements OnInit {
     if (validFrom) {
       /* initialisation of the new post object with the user's input*/
     this.post = new Post(form.username, form.email, form.message, form.type);
-    // push the submitted post into the end of the posts collection
-    this.posts.push(this.post);
     // emit the list of posts when submitted
-    this.onformSubmit.emit(this.posts);
+    this.onformSubmit.emit(this.post);
     } // end of if
   }
   getMsgLength() {

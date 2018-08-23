@@ -1,2 +1,2 @@
 <app-form (onformSubmit)='formWasSubmited($event)' *ngIf="show_form"></app-form>
-<app-posts-list [p_list]='posts_list' (onClickBackBtn)="clickedBtnWasClicked($event)" *ngIf="!show_form"></app-posts-list>
+<app-posts-list [p]='post' (onClickBackBtn)="clickedBtnWasClicked($event)" *ngIf="!show_form"></app-posts-list>
